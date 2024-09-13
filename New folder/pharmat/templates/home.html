@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<style>
+    /* Style to ensure the cards container is displayed as a flex container */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap; /* Allows wrapping if there are too many cards to fit in one line */
+        justify-content: center; /* Centers the cards horizontally */
+        gap: 3rem; /* Adds space between the cards */
+    }
+
+    /* Optional: If you want to limit the card size */
+    .card {
+        flex: 0 1 18rem; /* Allows the card to grow and shrink, but prefers 18rem width */
+    }
+
+    /* Additional styling if needed */
+    .card-img-top {
+        object-fit: cover; /* Ensures the image covers the card area */
+        height: 180px; /* Adjust based on your design */
+    }
+</style>
+
+<h1 style="text-align: center;">Products List</h1>
+<div class="card-container">
+    {% for product in products %}
+    <div class="card" style="width: 18rem;">
+        <img src="{{ product.image_url }}" class="card-img-top" alt="{{ product.name }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="card-text">{{ product.descr }}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
